@@ -1,0 +1,94 @@
+<!-- static/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Linterface</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="brand">Linterface</div>
+
+      <nav class="topnav">
+        <a href="#" id="historyLink">History</a>
+        <a href="https://github.com" target="_blank" rel="noreferrer">Github</a>
+      </nav>
+    </header>
+
+    <main id="frontView" class="view view-front active">
+      <div class="bg-dither" aria-hidden="true"></div>
+      <div class="bg-overlay" aria-hidden="true"></div>
+
+      <section class="profile-card">
+        <h1>Choose Profile</h1>
+
+        <form id="profileForm" class="profile-form">
+          <div class="select-wrap">
+            <select id="profileSelect" required>
+              <option value="" disabled selected>Loading profiles...</option>
+            </select>
+            <span class="select-arrow">↓</span>
+          </div>
+
+          <div id="profileMeta" class="profile-meta hidden">
+            <div class="meta-label">Working file</div>
+            <div id="profileWorkingFileName" class="meta-value">—</div>
+          </div>
+
+          <button type="submit" class="pill-button">SUBMIT</button>
+        </form>
+      </section>
+    </main>
+
+    <main id="resultView" class="view view-result">
+      <section class="result-layout">
+        <aside class="result-sidebar">
+          <div class="sidebar-block">
+            <div class="sidebar-label">Profile</div>
+            <div id="selectedProfileName" class="sidebar-value">—</div>
+          </div>
+
+          <div class="sidebar-block">
+            <div class="sidebar-label">Working file</div>
+            <div id="selectedWorkingFileName" class="sidebar-file-value">—</div>
+          </div>
+
+          <button id="analyzeBtn" class="sidebar-button">Analyze</button>
+          <button id="backBtn" class="sidebar-button sidebar-button-secondary">Back</button>
+
+          <div id="statusText" class="status-text">Ready.</div>
+        </aside>
+
+        <section class="result-panel">
+          <div class="panel-header">
+            <div class="panel-title">Audit Result</div>
+          </div>
+
+          <div id="emptyState" class="empty-state">
+            Select a profile and press <strong>Analyze</strong>.
+          </div>
+
+          <div id="loadingState" class="loading-state hidden">
+            <div class="spinner"></div>
+            <div>Analyzing design...</div>
+          </div>
+
+          <div id="errorState" class="error-state hidden"></div>
+          <article id="markdownOutput" class="markdown-body hidden"></article>
+        </section>
+      </section>
+    </main>
+  </div>
+
+  <script src="./static/app.js"></script>
+</body>
+</html>

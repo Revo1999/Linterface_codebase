@@ -1,0 +1,390 @@
+/* static/styles.css */
+:root {
+  --blue: #222ba8;
+  --paper: rgba(217, 217, 217, 0.94);
+  --line: rgba(255, 255, 255, 0.92);
+  --text-on-blue: #f5f5f5;
+  --text-dark: #101010;
+  --shadow: 0 14px 40px rgba(0, 0, 0, 0.16);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+  background: var(--blue);
+  color: var(--text-on-blue);
+  font-family: "Geist Mono", monospace;
+}
+
+body {
+  overflow: hidden;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.app-shell {
+  min-height: 100vh;
+  position: relative;
+  background: var(--blue);
+}
+
+.topbar {
+  position: fixed;
+  inset: 0 0 auto 0;
+  height: 78px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 28px;
+  z-index: 20;
+  pointer-events: none;
+}
+
+.topbar > * {
+  pointer-events: auto;
+}
+
+.brand {
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+
+.topnav {
+  display: flex;
+  gap: 28px;
+  font-size: 16px;
+}
+
+.topnav a:hover {
+  text-decoration: underline;
+}
+
+.view {
+  min-height: 100vh;
+  width: 100%;
+}
+
+.view-front {
+  position: relative;
+  display: none;
+}
+
+.view-front.active {
+  display: block;
+}
+
+.bg-dither,
+.bg-overlay {
+  position: absolute;
+  inset: 0;
+}
+
+.bg-dither {
+  background: url("./dither.png") center center / cover no-repeat;
+}
+
+.bg-overlay {
+  background: linear-gradient(to bottom, rgba(34, 43, 168, 0.04), rgba(34, 43, 168, 0.1));
+}
+
+.profile-card {
+  position: absolute;
+  left: 50%;
+  top: 52%;
+  transform: translate(-50%, -50%);
+  width: min(520px, calc(100vw - 48px));
+  min-height: 320px;
+  background: var(--paper);
+  color: var(--text-dark);
+  border-radius: 30px;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 22px;
+  padding: 34px 28px 22px;
+  z-index: 2;
+}
+
+.profile-card h1 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--blue);
+}
+
+.profile-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
+}
+
+.select-wrap {
+  position: relative;
+  width: 220px;
+}
+
+.select-wrap select {
+  width: 100%;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: var(--text-dark);
+  font-size: 24px;
+  text-align: center;
+  text-align-last: center;
+  appearance: none;
+  cursor: pointer;
+  padding-right: 26px;
+}
+
+.select-arrow {
+  position: absolute;
+  right: 52px;
+  top: 50%;
+  transform: translateY(-54%);
+  font-size: 28px;
+  color: var(--text-dark);
+  pointer-events: none;
+}
+
+.profile-meta {
+  width: 100%;
+  max-width: 320px;
+  text-align: center;
+  min-height: 52px;
+}
+
+.meta-label {
+  font-size: 12px;
+  color: rgba(16, 16, 16, 0.7);
+  margin-bottom: 8px;
+}
+
+.meta-value {
+  font-size: 14px;
+  line-height: 1.45;
+  word-break: break-word;
+}
+
+.pill-button {
+  width: 100%;
+  height: 36px;
+  border-radius: 999px;
+  border: 2px solid var(--blue);
+  background: transparent;
+  color: var(--blue);
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.pill-button:hover {
+  background: rgba(34, 43, 168, 0.08);
+}
+
+.view-result {
+  display: none;
+  padding: 92px 26px 26px;
+  background: var(--blue);
+}
+
+.view-result.active {
+  display: block;
+}
+
+.result-layout {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  height: calc(100vh - 118px);
+}
+
+.result-sidebar {
+  border: 2px solid var(--line);
+  border-right: 0;
+  border-radius: 38px 0 0 38px;
+  padding: 22px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.sidebar-label {
+  font-size: 14px;
+  opacity: 0.88;
+}
+
+.sidebar-value {
+  font-size: 28px;
+  line-height: 1.05;
+  word-break: break-word;
+}
+
+.sidebar-file-value {
+  font-size: 13px;
+  line-height: 1.5;
+  word-break: break-word;
+  opacity: 0.95;
+}
+
+.sidebar-button {
+  border: 2px solid var(--line);
+  background: transparent;
+  color: var(--text-on-blue);
+  border-radius: 18px;
+  min-height: 42px;
+  cursor: pointer;
+}
+
+.sidebar-button:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.status-text {
+  margin-top: auto;
+  font-size: 13px;
+  line-height: 1.4;
+  white-space: pre-wrap;
+}
+
+.result-panel {
+  border: 2px solid var(--line);
+  border-radius: 0 38px 38px 0;
+  padding: 22px 24px 28px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.panel-title {
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.empty-state,
+.loading-state,
+.error-state {
+  margin-top: 8px;
+  border: 1px dashed rgba(255, 255, 255, 0.38);
+  display: grid;
+  place-items: center;
+  text-align: center;
+  flex: 1;
+  padding: 24px;
+  border-radius: 22px;
+}
+
+.error-state {
+  color: #ffd4d4;
+  border-color: rgba(255, 130, 130, 0.6);
+  background: rgba(255, 80, 80, 0.08);
+}
+
+.loading-state {
+  gap: 14px;
+}
+
+.spinner {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.22);
+  border-top-color: rgba(255, 255, 255, 0.95);
+  animation: spin 0.8s linear infinite;
+}
+
+.markdown-body {
+  flex: 1;
+  overflow: auto;
+  margin-top: 8px;
+  padding-right: 4px;
+  color: var(--text-on-blue);
+  line-height: 1.6;
+  font-size: 14px;
+}
+
+.markdown-body table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin: 18px 0 24px;
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  border-radius: 18px;
+  overflow: hidden;
+}
+
+.markdown-body th,
+.markdown-body td {
+  text-align: left;
+  vertical-align: top;
+  padding: 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.24);
+  border-right: 1px solid rgba(255, 255, 255, 0.24);
+}
+
+.markdown-body tr:last-child td {
+  border-bottom: 0;
+}
+
+.markdown-body th:last-child,
+.markdown-body td:last-child {
+  border-right: 0;
+}
+
+.markdown-body thead th {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 900px) {
+  body {
+    overflow: auto;
+  }
+
+  .view-result {
+    padding: 82px 16px 16px;
+  }
+
+  .result-layout {
+    grid-template-columns: 1fr;
+    height: auto;
+    gap: 14px;
+  }
+
+  .result-sidebar,
+  .result-panel {
+    border-radius: 28px;
+    border-right: 2px solid var(--line);
+  }
+
+  .result-panel {
+    min-height: 62vh;
+  }
+}

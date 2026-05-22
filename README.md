@@ -1,0 +1,48 @@
+# Linterface
+
+Linterface is a FastAPI app for comparing a target Figma design against a design system reference. It renders Figma pages, runs deterministic checks, and uses the OpenAI Responses API for visual audit findings.
+
+## Setup
+
+```bash
+python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+cp .env.example .env
+```
+
+Fill in `.env` with your own API credentials:
+
+```bash
+OPENAI_API_KEY=your_openai_api_key_here
+FIGMA_TOKEN=your_figma_token_here
+```
+
+## Profiles
+
+Edit `profiles.json` and replace the placeholder Figma URLs:
+
+```json
+[
+  {
+    "name": "Example Profile",
+    "design_system_url": "https://www.figma.com/design/REPLACE_WITH_DESIGN_SYSTEM_FILE_KEY/example-design-system",
+    "working_file_url": "https://www.figma.com/design/REPLACE_WITH_TARGET_FILE_KEY/example-target-file",
+    "description": "Replace these URLs with your own Figma files."
+  }
+]
+```
+
+## Run
+
+```bash
+./start.sh
+```
+
+Then open `http://localhost:8000`.
+
+## Notes
+
+- Do not commit `.env`; use `.env.example` as the template.
+- Generated audit images and reports are written to `runs/`.
+- Runtime output folders are ignored by git and can be recreated by the app.
